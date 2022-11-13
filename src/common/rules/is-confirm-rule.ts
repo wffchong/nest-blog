@@ -1,9 +1,9 @@
 import { registerDecorator, ValidationArguments, ValidationOptions } from 'class-validator'
 
-export function IsConfirm(validationOptions?: ValidationOptions) {
+export function IsConfirmRule(validationOptions?: ValidationOptions) {
     return function (object: Record<string, any>, propertyName: string) {
         registerDecorator({
-            name: 'IsConfirm',
+            name: 'IsConfirmRule',
             target: object.constructor,
             propertyName: propertyName,
             constraints: [],
