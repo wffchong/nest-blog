@@ -6,7 +6,7 @@ export default class RegisterDto {
     name: string
 
     @IsNotEmpty({ message: '密码不能为空' })
-    // @IsConfirm({ message: '两次密码不一致' })
+    @IsConfirm({ message: '两次密码不一致' })
     password: string
 
     @IsNotEmpty({ message: '确认密码不能为空' })
