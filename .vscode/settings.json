@@ -3,6 +3,7 @@
         "cparagraph",
         "ctitle",
         "mockjs",
-        "nestjs"
+        "nestjs",
+        "validata"
     ]
 }

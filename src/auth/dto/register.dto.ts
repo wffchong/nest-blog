@@ -1,3 +1,4 @@
+import { IsConfirm } from '@/common/rules/is-confirm'
 import { IsNotEmpty } from 'class-validator'
 
 export default class RegisterDto {
@@ -5,6 +6,7 @@ export default class RegisterDto {
     name: string
 
     @IsNotEmpty({ message: '密码不能为空' })
+    // @IsConfirm({ message: '两次密码不一致' })
     password: string
 
     @IsNotEmpty({ message: '确认密码不能为空' })
