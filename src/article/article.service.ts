@@ -8,8 +8,14 @@ import { UpdateArticleDto } from './dto/update-article.dto'
 export class ArticleService {
     constructor(private readonly prisma: PrismaService, private readonly config: ConfigService) {}
 
-    create(createArticleDto: CreateArticleDto) {
-        return 'This action adds a new article'
+    // 创建文章
+    async create(createArticleDto: CreateArticleDto) {
+        return await this.prisma.article.create({
+            data: {
+                title: createArticleDto.title,
+                content: createArticleDto.content
+            }
+        })
     }
 
     // 分页查询
