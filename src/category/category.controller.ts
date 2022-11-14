@@ -3,13 +3,14 @@ import { CategoryService } from './category.service'
 import { CreateCategoryDto } from './dto/create-category.dto'
 import { UpdateCategoryDto } from './dto/update-category.dto'
 import { Auth } from '@/auth/decorators/auth.decorators'
+import { Role } from '@/auth/enum'
 
 @Controller('category')
 export class CategoryController {
     constructor(private readonly categoryService: CategoryService) {}
 
     @Post()
-    @Auth()
+    @Auth(Role.ADMIN)
     create(@Body() createCategoryDto: CreateCategoryDto) {
         return this.categoryService.create(createCategoryDto)
     }
