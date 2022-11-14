@@ -56,7 +56,12 @@ export class ArticleService {
         return `This action updates a #${id} article`
     }
 
-    remove(id: number) {
-        return `This action removes a #${id} article`
+    // 删除文章
+    async remove(id: number) {
+        return await this.prisma.article.delete({
+            where: {
+                id
+            }
+        })
     }
 }
