@@ -52,8 +52,15 @@ export class ArticleService {
         })
     }
 
-    update(id: number, updateArticleDto: UpdateArticleDto) {
-        return `This action updates a #${id} article`
+    // 更新文章
+    async update(id: number, updateArticleDto: UpdateArticleDto) {
+        return await this.prisma.article.update({
+            where: { id },
+            data: {
+                title: updateArticleDto.title,
+                content: updateArticleDto.content
+            }
+        })
     }
 
     // 删除文章
