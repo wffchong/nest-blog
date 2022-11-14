@@ -13,7 +13,8 @@ export class ArticleService {
         return await this.prisma.article.create({
             data: {
                 title: createArticleDto.title,
-                content: createArticleDto.content
+                content: createArticleDto.content,
+                categoryId: +createArticleDto.categoryId
             }
         })
     }
