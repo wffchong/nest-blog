@@ -12,6 +12,7 @@ export class ArticleService {
         return 'This action adds a new article'
     }
 
+    // 分页查询
     async findAll(args: Record<string, any>) {
         // 每页条数
         const row = this.config.get('ARTICLE_PAGE_ROW')
@@ -36,8 +37,13 @@ export class ArticleService {
         }
     }
 
-    findOne(id: number) {
-        return `This action returns a #${id} article`
+    // 查询单条文章
+    async findOne(id: number) {
+        return await this.prisma.article.findFirst({
+            where: {
+                id
+            }
+        })
     }
 
     update(id: number, updateArticleDto: UpdateArticleDto) {
