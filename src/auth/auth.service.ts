@@ -18,9 +18,7 @@ export class AuthService {
             }
         })
 
-        const res = this.token(user)
-        console.log(res)
-        return res
+        return this.token(user)
     }
 
     async login(dto: LoginDto) {
