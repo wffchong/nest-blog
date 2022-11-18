@@ -14,7 +14,37 @@ model user {
     id       Int    @id @default(autoincrement()) @db.UnsignedInt
     name     String @unique
     password String
-    role     String?
+    role     role   @relation(fields: [roleName], references: [roleName])
+    roleName String
+}
+
+model role {
+    id       Int    @id @default(autoincrement()) @db.UnsignedInt
+    roleName String @unique
+    user     user[]
+}
+
+model menu {
+    id        Int     @id @default(autoincrement()) @db.UnsignedInt
+    path      String
+    name      String
+    redirect  String?
+    component String?
+    parentId  Int
+    meta      meta    @relation(fields: [metaId], references: [id])
+    metaId    Int     @db.UnsignedInt
+}
+
+model meta {
+    id          Int     @id @default(autoincrement()) @db.UnsignedInt
+    icon        String
+    title       String
+    isLint      String?
+    isHide      Boolean
+    isFull      Boolean
+    isAffix     Boolean
+    isKeepAlive Boolean
+    menu        menu[]
 }
 
 model category {

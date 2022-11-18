@@ -3,8 +3,10 @@ import { PrismaModule } from './prisma/prisma.module'
 import { AuthModule } from './auth/auth.module'
 import { ConfigModule } from '@nestjs/config'
 import { ArticleModule } from './article/article.module'
-import { CategoryModule } from './category/category.module';
-import { UploadModule } from './upload/upload.module';
+import { CategoryModule } from './category/category.module'
+import { UploadModule } from './upload/upload.module'
+import { MenuModule } from './menu/menu.module'
+import { MetaModule } from './meta/meta.module'
 
 @Module({
     imports: [
@@ -15,7 +17,9 @@ import { UploadModule } from './upload/upload.module';
         }),
         ArticleModule,
         CategoryModule,
-        UploadModule
+        UploadModule,
+        MenuModule,
+        MetaModule
     ]
 })
 export class AppModule {}

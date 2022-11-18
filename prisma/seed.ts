@@ -9,8 +9,8 @@ async function run() {
     await prisma.user.create({
         data: {
             name: 'admin',
-            password: await hash('admin123'),
-            role: 'admin'
+            password: await hash('123456'),
+            roleName: 'admin'
         }
     })
 
