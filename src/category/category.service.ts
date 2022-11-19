@@ -9,12 +9,27 @@ export class CategoryService {
 
     async create(createCategoryDto: CreateCategoryDto) {
         return await this.prisma.category.create({
-            data: createCategoryDto
+            data: {
+                title: createCategoryDto.title
+            }
         })
     }
 
+    // 获取所有的分类
     async findAll() {
-        return await this.prisma.category.findMany()
+        const data = await this.prisma.category.findMany({
+            include: {
+                articles: true
+            }
+        })
+
+        return data.map((item) => {
+            return {
+                id: item.id,
+                title: item.title,
+                articleCount: item.articles.length
+            }
+        })
     }
 
     async findOne(id: number) {

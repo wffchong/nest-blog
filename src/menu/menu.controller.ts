@@ -7,8 +7,7 @@ import {
     Param,
     Delete,
     UseInterceptors,
-    ClassSerializerInterceptor,
-    SerializeOptions
+    ClassSerializerInterceptor
 } from '@nestjs/common'
 import { MenuService } from './menu.service'
 import { CreateMenuDto } from './dto/create-menu.dto'

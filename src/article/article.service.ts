@@ -14,7 +14,8 @@ export class ArticleService {
             data: {
                 title: createArticleDto.title,
                 content: createArticleDto.content,
-                categoryId: +createArticleDto.categoryId
+                categoryId: +createArticleDto.categoryId,
+                tagId: +createArticleDto.tagId
             }
         })
     }
@@ -22,7 +23,7 @@ export class ArticleService {
     // 分页查询
     async findAll(args: Record<string, any>) {
         // 每页条数
-        const row = this.config.get('ARTICLE_PAGE_ROW')
+        const row = args.pageSize ?? this.config.get('ARTICLE_PAGE_ROW')
         // 页码数
         const page = args.page ? args.page : 1
 
@@ -35,12 +36,12 @@ export class ArticleService {
 
         return {
             meta: {
-                current_page: page,
+                current_page: +page,
                 page_row: +row,
                 total,
                 total_page: Math.ceil(total / row) // 当前页
             },
-            data: articles
+            dataList: articles
         }
     }
 

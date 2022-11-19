@@ -10,7 +10,7 @@ async function bootstrap() {
     app.useGlobalPipes(new Validate())
     app.useGlobalInterceptors(new TransformInterceptor())
     // 设置前缀
-    app.setGlobalPrefix('api')
+    app.setGlobalPrefix('blog')
     // 设置文件上传后的静态资源目录
     app.useStaticAssets(join(__dirname, '../uploads'), {
         prefix: '/uploads'
