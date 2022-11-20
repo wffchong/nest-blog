@@ -8,7 +8,9 @@ export class TransformInterceptor implements NestInterceptor {
         const code = response.statusCode
         return next.handle().pipe(
             map((data) => {
-                return data?.meta ? data : { data, code, msg: '成功' }
+                // console.log(data)
+                // return data?.meta ? { data, code, msg: '成功' } : { data, code, msg: '成功' }
+                return { data, code, msg: '成功' }
             })
         )
     }
