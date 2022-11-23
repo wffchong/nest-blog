@@ -48,16 +48,15 @@ model meta {
 }
 
 model category {
-    id           Int       @id @default(autoincrement()) @db.UnsignedInt
-    title        String
-    articles     article[]
+    id       Int       @id @default(autoincrement()) @db.UnsignedInt
+    title    String
+    articles article[]
 }
 
 model tag {
-    id       Int       @id @default(autoincrement()) @db.UnsignedInt
-    tagName  String
-    color    String
-    articles article[]
+    id      Int    @id @default(autoincrement()) @db.UnsignedInt
+    tagName String
+    color   String
 }
 
 model article {
@@ -70,6 +69,5 @@ model article {
     updatedAt  DateTime @updatedAt
     category   category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
     categoryId Int      @db.UnsignedInt
-    tag        tag      @relation(fields: [tagId], references: [id])
-    tagId      Int      @db.UnsignedInt
+    tagIds     String
 }

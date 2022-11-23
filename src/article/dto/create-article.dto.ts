@@ -11,5 +11,5 @@ export class CreateArticleDto {
     categoryId: number
 
     @IsNotEmpty({ message: '文章标签不能为空' })
-    tagId: number
+    tagIds: string
 }

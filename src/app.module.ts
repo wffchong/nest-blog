@@ -7,6 +7,7 @@ import { CategoryModule } from './category/category.module'
 import { UploadModule } from './upload/upload.module'
 import { MenuModule } from './menu/menu.module'
 import { MetaModule } from './meta/meta.module'
+import { TagModule } from './tag/tag.module';
 
 @Module({
     imports: [
@@ -19,7 +20,8 @@ import { MetaModule } from './meta/meta.module'
         CategoryModule,
         UploadModule,
         MenuModule,
-        MetaModule
+        MetaModule,
+        TagModule
     ]
 })
 export class AppModule {}

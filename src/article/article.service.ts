@@ -10,14 +10,18 @@ export class ArticleService {
 
     // 创建文章
     async create(createArticleDto: CreateArticleDto) {
-        return await this.prisma.article.create({
+        const article = await this.prisma.article.create({
             data: {
                 title: createArticleDto.title,
                 content: createArticleDto.content,
                 categoryId: +createArticleDto.categoryId,
-                tagId: +createArticleDto.tagId
+                tagIds: createArticleDto.tagIds
             }
         })
+        return {
+            ...article,
+            tagIds: JSON.parse(article.tagIds)
+        }
     }
 
     // 分页查询
@@ -32,6 +36,13 @@ export class ArticleService {
             take: +row
         })
 
+        const result = articles.map((article) => {
+            return {
+                ...article,
+                tagIds: JSON.parse(article.tagIds)
+            }
+        })
+
         const total = await this.prisma.article.count()
 
         return {
@@ -41,17 +52,21 @@ export class ArticleService {
                 total,
                 total_page: Math.ceil(total / row) // 当前页
             },
-            dataList: articles
+            dataList: result
         }
     }
 
     // 查询单条文章
     async findOne(id: number) {
-        return await this.prisma.article.findFirst({
+        const result = await this.prisma.article.findFirst({
             where: {
                 id
             }
         })
+        return {
+            ...result,
+            tagIds: JSON.parse(result.tagIds)
+        }
     }
 
     // 更新文章

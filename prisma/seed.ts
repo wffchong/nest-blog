@@ -45,7 +45,7 @@ async function run() {
                 categoryId: _.random(1, 5),
                 comments: _.random(20, 50),
                 viewCount: _.random(10, 50),
-                tagId: _.random(1, 5)
+                tagIds: JSON.stringify([1, 2])
             }
         })
     }
