@@ -58,6 +58,7 @@ export class ArticleService {
 
     // 查询单条文章
     async findOne(id: number) {
+        console.log(id)
         const result = await this.prisma.article.findFirst({
             where: {
                 id
@@ -87,5 +88,20 @@ export class ArticleService {
                 id
             }
         })
+    }
+
+    // 获取最新文章--返回五条最新添加的
+    async findLast(num: number) {
+        const articles = await this.prisma.article.findMany({
+            take: -num
+        })
+
+        const result = articles.map((article) => {
+            return {
+                ...article,
+                tagIds: JSON.parse(article.tagIds)
+            }
+        })
+        return result
     }
 }

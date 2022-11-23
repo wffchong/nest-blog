@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common'
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, DefaultValuePipe } from '@nestjs/common'
 import { ArticleService } from './article.service'
 import { CreateArticleDto } from './dto/create-article.dto'
 import { UpdateArticleDto } from './dto/update-article.dto'
@@ -15,6 +15,11 @@ export class ArticleController {
     @Get()
     findAll(@Query() args = {}) {
         return this.articleService.findAll(args)
+    }
+
+    @Get('findLast')
+    findLast(@Body('num', new DefaultValuePipe(5)) num: number) {
+        return this.articleService.findLast(num)
     }
 
     @Get(':id')
