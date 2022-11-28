@@ -33,7 +33,12 @@ export class ArticleService {
 
         const articles = await this.prisma.article.findMany({
             skip: (page - 1) * row,
-            take: +row
+            take: +row,
+            orderBy: [
+                {
+                    createdAt: 'desc'
+                }
+            ]
         })
 
         const result = articles.map((article) => {
